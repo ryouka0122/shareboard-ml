@@ -3,10 +3,23 @@ import numpy as np
 
 
 def printf(fmt: str, *args):
+    """
+        C形式の出力関数
+        :arg
+            fmt 出力時のフォーマット
+            args フォーマットに指定する値
+    """
     sys.stdout.write(fmt % args)
 
 
-def read_file(path):
+def read_file(path: str) -> np.ndarray:
+    """
+        ファイル読み込み
+        :arg
+            path ファイルのパス
+        :return
+            numpyの配列として展開されたデータの配列
+    """
     with open(path) as fd:
         return np.array(
             [
@@ -16,6 +29,15 @@ def read_file(path):
 
 
 def compute_cost(X, y, theta):
+    """
+        コストの計算
+        :arg
+            X 入力データ
+            y 教師データ
+            theta パラメータ
+        :return
+            コスト値
+    """
     m = y.shape[0]
     J = 0.0
 
@@ -26,7 +48,18 @@ def compute_cost(X, y, theta):
     return J / (2.0 * m)
 
 
-def gradient_descent(X, y, theta, alpha, iterations):
+def gradient_descent(X: np.ndarray, y: np.ndarray, theta: np.ndarray, alpha: float, iterations: int) -> np.ndarray:
+    """
+        勾配降下法の実行
+        :arg
+            X 入力データ
+            y 教師データ
+            theta 初期パラメータ
+            alpha 学習率
+            iterations 反復数
+        :return:
+            最適化されたパラメータ
+    """
     m = len(y)
     n = len(theta)
     K = alpha / m
@@ -44,6 +77,10 @@ def gradient_descent(X, y, theta, alpha, iterations):
 
 
 def main():
+    """
+        エントリポイント
+    """
+
     # == load dataset ==========================================
     dataset = read_file('ex1data1.txt')
     m = dataset.shape[0]

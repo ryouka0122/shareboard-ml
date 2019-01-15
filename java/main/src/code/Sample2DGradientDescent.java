@@ -6,20 +6,30 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 
+/**
+ * 勾配降下法のサンプル
+ * @author ryouka
+ *
+ */
 public class Sample2DGradientDescent {
+	
 	/**
 	 * [Entry Point]
 	 * @param args
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
+		if(args==null || args.length<1) {
+			System.out.println("[ERROR] need filepath");
+			return;
+		}
+				
 		// == load data ===========================================
 		List<double[]> dataList = new ArrayList<>();
-		try( Stream<String> stream = Files.lines(Paths.get("java/ex1data1.txt")) ) {
+		try( Stream<String> stream = Files.lines(Paths.get(args[0])) ) {
 			stream.forEach(line -> {
 				dataList.add(parseLine(line));
 			});
@@ -73,7 +83,7 @@ public class Sample2DGradientDescent {
 	}
 	
 	/**
-	 * 
+	 * CSV形式のデータからdouble型の配列に変換する処理
 	 * @param line
 	 * @return
 	 */
@@ -84,11 +94,11 @@ public class Sample2DGradientDescent {
 	}
 	
 	/**
-	 * 
-	 * @param X
-	 * @param y
-	 * @param theta
-	 * @return
+	 * コストを計算するメソッド
+	 * @param X 入力データ
+	 * @param y 教師データ
+	 * @param theta パラメータ
+	 * @return コスト
 	 */
 	private static double computeCost(double[][] X, double[] y, double[] theta) {
 		int m = y.length;
@@ -97,6 +107,7 @@ public class Sample2DGradientDescent {
 		for(int i=0 ; i<m ; i++) {
 			double cost = 0.0;
 			double[] x = X[i];
+			// 回帰の時のコスト計算（誤差2乗）
 			for(int j=0 ; j<n ; j++) {
 				cost += x[j] * theta[j];
 			}
@@ -106,13 +117,13 @@ public class Sample2DGradientDescent {
 	}
 	
 	/**
-	 * 
-	 * @param X
-	 * @param y
-	 * @param theta
-	 * @param alpha
-	 * @param iterations
-	 * @return
+	 * 勾配降下法の実行
+	 * @param X 入力データ
+	 * @param y 教師データ
+	 * @param theta 初期パラメータ
+	 * @param alpha 学習率
+	 * @param iterations 反復数
+	 * @return 最適化されたパラメータ
 	 */
 	private static double[] gradientDescent(
 			double[][] X,

@@ -2,19 +2,48 @@ import sys
 
 
 def printf(fmt: str, *args):
+    """
+        C形式の出力関数
+        :arg
+            fmt 出力時のフォーマット
+            args フォーマットに指定する値
+    """
     sys.stdout.write(fmt % args)
 
 
-def read_file(path):
+def read_file(path: str) -> [float]:
+    """
+        ファイル読み込み
+        :arg
+            path ファイルのパス
+        :return
+            floatの配列として展開されたデータの配列
+    """
     with open(path) as fd:
         return [parse_line(line) for line in fd]
 
 
-def parse_line(line):
+def parse_line(line: str) -> [float]:
+    """
+        読み込んだデータを学習データように変換する処理
+        :arg
+            line 読み込んだ1行分のデータ（カンマ区切りの小数であること）
+        :return
+            float型に変換されたデータの配列
+    """
     return [float(t) for t in line.split(',')]
 
 
-def compute_cost(X, y, theta):
+def compute_cost(X: [[float]], y: [float], theta: [float]) -> float:
+    """
+        コストの計算
+        :arg
+            X 入力データ
+            y 教師データ
+            theta パラメータ
+        :return
+            コスト値
+    """
     m = len(y)
     n = len(theta)
     J = 0.0
@@ -26,7 +55,18 @@ def compute_cost(X, y, theta):
     return J / (2.0 * m)
 
 
-def gradient_descent(X, y, theta, alpha, iterations):
+def gradient_descent(X: [[float]], y: [float], theta: [float], alpha: float, iterations: int) -> [float]:
+    """
+        勾配降下法の実行
+        :arg
+            X 入力データ
+            y 教師データ
+            theta 初期パラメータ
+            alpha 学習率
+            iterations 反復数
+        :return:
+            最適化されたパラメータ
+    """
     m = len(y)
     n = len(theta)
     K = alpha / m
@@ -49,6 +89,10 @@ def gradient_descent(X, y, theta, alpha, iterations):
 
 
 def main():
+    """
+        エントリポイント
+    """
+
     # == load dataset ==========================================
     dataset = read_file('ex1data1.txt')
     m = len(dataset)

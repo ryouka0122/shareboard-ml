@@ -9,12 +9,12 @@
 
 
 // ========================================================================================
-// ƒf[ƒ^•ÏŠ·ˆ—
-// “Ç‚İ‚ñ‚¾1s‚Ìƒf[ƒ^‚ğƒJƒ“ƒ}‚Å‹æØ‚Á‚ÄCdouble‚É•ÏŠ·ˆ—‚µ‚½‚à‚Ì‚ğstd::deque<>‚É‹l‚ß‚é
+// ãƒ‡ãƒ¼ã‚¿å¤‰æ›å‡¦ç†
+// èª­ã¿è¾¼ã‚“ã 1è¡Œã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚«ãƒ³ãƒã§åŒºåˆ‡ã£ã¦ï¼Œdoubleã«å¤‰æ›å‡¦ç†ã—ãŸã‚‚ã®ã‚’std::deque<>ã«è©°ã‚ã‚‹
 // 
-// return •ÏŠ·Œã‚Ìƒf[ƒ^ƒŠƒXƒg
+// return å¤‰æ›å¾Œã®ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆ
 // 
-// dataF•ÏŠ·‚µ‚½‚¢ƒf[ƒ^
+// dataï¼šå¤‰æ›ã—ãŸã„ãƒ‡ãƒ¼ã‚¿
 //
 //
 std::deque<double> parseLine(std::string data) {
@@ -32,11 +32,11 @@ std::deque<double> parseLine(std::string data) {
 }
 
 // ========================================================================================
-// ƒtƒ@ƒCƒ‹“Ç‚İ‚İ
+// ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
 // 
-// return “Ç‚İ‚Ü‚ê‚½ŠwKƒf[ƒ^‚ÌƒŠƒXƒg
+// return èª­ã¿è¾¼ã¾ã‚ŒãŸå­¦ç¿’ãƒ‡ãƒ¼ã‚¿ã®ãƒªã‚¹ãƒˆ
 //
-// pathFƒtƒ@ƒCƒ‹ƒpƒX
+// pathï¼šãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
 //
 //
 std::deque<std::deque<double>> loadFile(const char *path) {
@@ -55,13 +55,13 @@ std::deque<std::deque<double>> loadFile(const char *path) {
 }
 
 // ========================================================================================
-// ƒRƒXƒgŒvZ
+// ã‚³ã‚¹ãƒˆè¨ˆç®—
 // 
-// return ƒRƒXƒg
+// return ã‚³ã‚¹ãƒˆ
 //
-// XFŠwKƒf[ƒ^
-// yF‹³tƒf[ƒ^
-// thetaFƒV[ƒ^’l
+// Xï¼šå…¥åŠ›ãƒ‡ãƒ¼ã‚¿
+// yï¼šæ•™å¸«ãƒ‡ãƒ¼ã‚¿
+// thetaï¼šã‚·ãƒ¼ã‚¿å€¤
 //
 //
 double computeCost(
@@ -86,15 +86,15 @@ double computeCost(
 
 
 // ========================================================================================
-// Œù”z~‰º–@‚ÌÀs
+// å‹¾é…é™ä¸‹æ³•ã®å®Ÿè¡Œ
 //
-// return Å“K‰»‚³‚ê‚½ƒV[ƒ^’l
+// return æœ€é©åŒ–ã•ã‚ŒãŸã‚·ãƒ¼ã‚¿å€¤
 //
-// XFŠwKƒf[ƒ^
-// yF‹³tƒf[ƒ^
-// thetaF‰ŠúƒV[ƒ^’l
-// alphaFŠwK—¦iƒfƒtƒHƒ‹ƒg0.01j
-// iterationsF”½•œ”iƒfƒtƒHƒ‹ƒg1500j
+// Xï¼šå…¥åŠ›ãƒ‡ãƒ¼ã‚¿
+// yï¼šæ•™å¸«ãƒ‡ãƒ¼ã‚¿
+// thetaï¼šåˆæœŸã‚·ãƒ¼ã‚¿å€¤
+// alphaï¼šå­¦ç¿’ç‡ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ0.01ï¼‰
+// iterationsï¼šåå¾©æ•°ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ1500ï¼‰
 // 
 //
 std::deque<double> gradientDescent(
@@ -112,18 +112,18 @@ std::deque<double> gradientDescent(
 	double *grad = new double[n];
 	std::deque<double> x;
 
-	while (iterations-- > 0) {
+	do {
 		// grad initialize with zero
 		memset(grad, 0, sizeof(double)*n);
 
-		// grad (dJ/dt) ‚ÌŒvZ
+		// grad (dJ/dt) ã®è¨ˆç®—
 		for (i = 0; i < m; i++) {
 			x = X[i];
 			val = -1.0 * y[i];
-			for (int j = 0; j < n; j++) {
+			for (j = 0; j < n; j++) {
 				val += x[j] * theta[j];
 			}
-			for (int j = 0; j < n; j++) {
+			for (j = 0; j < n; j++) {
 				grad[j] += x[j] * val;
 			}
 		}
@@ -131,16 +131,16 @@ std::deque<double> gradientDescent(
 		for (j = 0; j < n; j++) {
 			theta[j] -= K * grad[j];
 		}
-	}
+	} while (iterations-- > 0);
 	delete[] grad;
 	return theta;
 }
 
 // ========================================================================================
-// ƒGƒ“ƒgƒŠƒ|ƒCƒ“ƒg
+// ã‚¨ãƒ³ãƒˆãƒªãƒã‚¤ãƒ³ãƒˆ
 //
-// argcFÀsˆø”argv‚Ì—v‘f”
-// argvFÀsˆø”‚Ìƒf[ƒ^i1‚Â–Ú->©•ª©g‚Ìƒtƒ‹ƒpƒXC2‚Â–ÚˆÈ~->ˆø”‚Æ‚µ‚Äw’è‚µ‚½ƒf[ƒ^j
+// argcï¼šå®Ÿè¡Œæ™‚å¼•æ•°argvã®è¦ç´ æ•°
+// argvï¼šå®Ÿè¡Œæ™‚å¼•æ•°ã®ãƒ‡ãƒ¼ã‚¿ï¼ˆ1ã¤ç›®->è‡ªåˆ†è‡ªèº«ã®ãƒ•ãƒ«ãƒ‘ã‚¹ï¼Œ2ã¤ç›®ä»¥é™->å¼•æ•°ã¨ã—ã¦æŒ‡å®šã—ãŸãƒ‡ãƒ¼ã‚¿ï¼‰
 //
 //
 int main(int argc, char* argv[]) {
@@ -157,8 +157,8 @@ int main(int argc, char* argv[]) {
 	}
 
 #if defined(_DEBUG) || defined(DEBUG)
-	for (std::deque<double*>::size_type i = 0; i < datalist.size(); i++) {
-		double* ds = datalist[i];
+	for (std::deque<std::deque<double>>::size_type i = 0; i < datalist.size(); i++) {
+		std::deque<double> ds = datalist[i];
 		std::stringstream ss;
 		for (int j = 0; j < 2 ; j++) {
 			ss << ","<< ds[j];
